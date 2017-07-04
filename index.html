@@ -7,6 +7,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Radiomax</title>
+  <!-- google fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Fascinate" rel="stylesheet">
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <style>
@@ -57,9 +59,18 @@
     .fade {
       opacity: 1 !important;
     }
+    img{
+      cursor: pointer;
+      transition: all .6s ease;
+      border: solid 2px transparent;
+    }
+    img:hover{
+      opacity: 0.8;
+      border: solid 2px #fff;
+    }
 
     h1 {
-      padding: 32px 0px 0px 0px;
+      padding: 60px 0px 16px 0px;
       font-family: Fascinate;
       width: 360px;
       color: #fff;
@@ -74,9 +85,10 @@
     }
 
     h2 {
-      font-size: 14px;
+      font-size: 16px;
       font-family: sans-serif;
       margin: 22px 0px 0px 0px;
+      font-weight: 700;
     }
 
     .current-img {
@@ -90,22 +102,6 @@
       color: #fff;
       padding: 5px;
     }
-
-    img.bg {
-      /* Set rules to fill background */
-      min-height: 100%;
-      min-width: 1024px;
-
-      /* Set up proportionate scaling */
-      width: 100%;
-      height: auto;
-
-      /* Set up positioning */
-      position: fixed;
-      top: 0;
-      left: 0;
-    }
-
     .containers {
       height: 100vh;
       display: flex;
@@ -138,6 +134,7 @@
     }
     .next-program{
       margin-bottom:10px;
+      margin-top: 10px;
     }
     .btn-channel{
         background-image: -webkit-linear-gradient(#ffcc76, #66d99b);
@@ -148,6 +145,19 @@
         min-height: 40px;
         height: auto;
         margin: 10px;
+        cursor: pointer;
+        font-weight: 500;
+        transition: all 1.2s ease;
+        border: solid 2px transparent;
+      }
+      .btn-channel:hover{
+        background-image: -webkit-linear-gradient(#66d99b, #ffcc76);
+        background-image: -o-linear-gradient(#66d99b, #ffcc76);
+        background-image: linear-gradient(#66d99b, #ffcc76);
+        border: solid 2px #fff;
+      }
+      .info{
+        margin-top: 10px;
       }
   </style>
 </head>
@@ -158,6 +168,7 @@
 
   <div id="radiomax">
     <div class="col-md-12 text-center">
+        <h1 v-on:click="hello()">Joisak Radio MAX</h1>
       <button class="btn-channel" v-on:click="hideAndShow(0)">P1</button>
       <button class="btn-channel" v-on:click="hideAndShow(1)">P2</button>
       <button class="btn-channel" v-on:click="hideAndShow(2)">P3</button>
@@ -175,10 +186,10 @@
               <div v-cloak v-show="show">
                 <transition name="hide">
                   <div v-if="channel.hidden">
-                    <img class="current-img" :src="channel.image">
+                    <img v-on:click="showInfo = !showInfo"  class="current-img" :src="channel.image">
                     <h2>{{channel.title}}</h2>
-                    <p v-on:click="showInfo = !showInfo">Info</p>
-                    <p v-show="showInfo">{{ channel.description }}</p>
+                    <p class="info" v-show="showInfo">{{ channel.description }}</p>
+
                     <p class="next-program">Nästa program: {{ channel.next}}</p>
                     <audio :src="channel.play" controls>
         </div>
@@ -318,6 +329,9 @@ new Vue({
         this.channelInfo[3].play = response.data.channels[7].liveaudio.url;
         this.show = true;
      });
+   },
+   hello(){
+     alert('JOISAK RADIO MAX!!! Välj din favoritkanal och bara kör!');
    }
  }
 });
