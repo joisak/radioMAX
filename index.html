@@ -11,174 +11,27 @@
   <link href="https://fonts.googleapis.com/css?family=Fascinate" rel="stylesheet">
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <style>
-    [v-cloak] {
-      display: none;
-    }
-
-    .hide-enter-active {
-      transition: all .5s ease;
-    }
-
-    .hide-leave-active {
-      display: none;
-    }
-
-    .hide-enter,
-    .hide-leave-to
-    /* .slide-fade-leave-active for <2.1.8 */
-
-    {
-      transform: translateX(10px);
-      opacity: 0;
-    }
-
-    .snopp-enter-active,
-    .fade-leave-active {
-      transition: opacity .5s
-    }
-
-    .snopp-enter,
-    .fade-leave-to
-    /* .fade-leave-active in <2.1.8 */
-
-    {
-      opacity: 0
-    }
-
-    body {
-      margin: 0px 0px 0px 0px;
-    }
-
-    #wrapper {
-      background-image: linear-gradient(#ffcc76, #66d99b);
-      width: 100%;
-      opacity: 0;
-    }
-
-    .fade {
-      opacity: 1 !important;
-    }
-    img{
-      cursor: pointer;
-      transition: all .6s ease;
-      border: solid 2px transparent;
-    }
-    img:hover{
-      opacity: 0.8;
-      border: solid 2px #fff;
-    }
-
-    h1 {
-      padding: 60px 0px 16px 0px;
-      font-family: Fascinate;
-      width: 360px;
-      color: #fff;
-      margin: 0 auto;
-      font-size: 44px;
-      cursor: pointer;
-      transition: color 1.2s ease;
-    }
-
-    h1:hover {
-      color: black;
-    }
-
-    h2 {
-      font-size: 16px;
-      font-family: sans-serif;
-      margin: 22px 0px 0px 0px;
-      font-weight: 700;
-    }
-
-    .current-img {
-      width: 40%;
-    }
-
-    .next-program {
-      background: black;
-      width: 40%;
-      margin: 0 auto;
-      color: #fff;
-      padding: 5px;
-    }
-    .containers {
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: linear-gradient(50deg, #B388EB, #8093F1);
-      opacity: 0.8;
-      filter: saturate(1.6);
-    }
-
-    .title {
-      width: 200px;
-      height: 20px;
-      font-size: 16px;
-      font-family: 'Roboto', sans-serif;
-      color: #FFF;
-      text-transform: uppercase;
-      text-align: center;
-      letter-spacing: 4px;
-      background: rgba(#000000, 0.2);
-      padding: 15px 20px;
-      transition: all .5s ease;
-      border-radius: 3px;
-      cursor: pointer
-    }
-
-    .title a {
-      text-decoration: none;
-      color: #FFF;
-    }
-    .next-program{
-      margin-bottom:10px;
-      margin-top: 10px;
-    }
-    .btn-channel{
-        background-image: -webkit-linear-gradient(#ffcc76, #66d99b);
-        background-image: -o-linear-gradient(#ffcc76, #66d99b);
-        background-image: linear-gradient(#ffcc76, #66d99b);
-        width: 10%;
-        min-width: 100px;
-        min-height: 40px;
-        height: auto;
-        margin: 10px;
-        cursor: pointer;
-        font-weight: 500;
-        transition: all 1.2s ease;
-        border: solid 2px transparent;
-      }
-      .btn-channel:hover{
-        background-image: -webkit-linear-gradient(#66d99b, #ffcc76);
-        background-image: -o-linear-gradient(#66d99b, #ffcc76);
-        background-image: linear-gradient(#66d99b, #ffcc76);
-        border: solid 2px #fff;
-      }
-      .info{
-        margin-top: 10px;
-      }
-  </style>
+  <!-- Styles -->
+  <link rel="stylesheet" href="cool.css">
 </head>
 
 <body>
   <div id="wrapper">
     <div class="row">
 
-  <div id="radiomax">
-    <div class="col-md-12 text-center">
-        <h1 v-on:click="hello()">Joisak Radio MAX</h1>
-      <button class="btn-channel" v-on:click="hideAndShow(0)">P1</button>
-      <button class="btn-channel" v-on:click="hideAndShow(1)">P2</button>
-      <button class="btn-channel" v-on:click="hideAndShow(2)">P3</button>
-      <button class="btn-channel" v-on:click="hideAndShow(3)">P4</button>
-    </div>
+      <div id="radiomax">
+        <div class="col-md-12 text-center">
+          <h1 v-on:click="hello()">Joisak Radio MAX</h1>
+          <button class="btn-channel" v-on:click="hideAndShow(0)">P1</button>
+          <button class="btn-channel" v-on:click="hideAndShow(1)">P2</button>
+          <button class="btn-channel" v-on:click="hideAndShow(2)">P3</button>
+          <button class="btn-channel" v-on:click="hideAndShow(3)">P4</button>
+        </div>
 
 
 
 
-                <div class="text-center col-md-6 col-md-offset-3">
+        <div class="text-center col-md-6 col-md-offset-3">
 
           <div v-for="channel in channelInfo">
             <div v-bind:class="channel.id"></div>
@@ -186,7 +39,7 @@
               <div v-cloak v-show="show">
                 <transition name="hide">
                   <div v-if="channel.hidden">
-                    <img v-on:click="showInfo = !showInfo"  class="current-img" :src="channel.image">
+                    <img v-on:click="showInfo = !showInfo" class="current-img" :src="channel.image">
                     <h2>{{channel.title}}</h2>
                     <p class="info" v-show="showInfo">{{ channel.description }}</p>
 
@@ -205,143 +58,5 @@
 </body>
 <script src="https://unpkg.com/vue"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.16.2/axios.js"></script>
-<script>
-new Vue({
- el: '#radiomax',
- data: {
-    show: false,
-    showInfo: false,
-    channelInfo: [
-    {
-      image: '',
-      title: '',
-      description: '',
-      next: '',
-      play: '',
-      id: 'channel1',
-      hidden: true
-    },
-    {
-      image: '',
-      title: '',
-      description: '',
-      next: '',
-      play: '',
-      id: 'channel2',
-      hidden: false
-    },
-    {
-      image:'',
-      title:'',
-      description: '',
-      next: '',
-      play: '',
-      id: 'channel3',
-      hidden: false
-    },
-    {
-      image: '',
-      title: '',
-      description: '',
-      next: '',
-      play: '',
-      id: 'channel4',
-      hidden: false
-    }
-  ]
- },
- created(){
-   axios.get('http://api.sr.se/api/v2/scheduledepisodes/rightnow/channelid=132?format=json&page=2').then(response => {
-      this.results = response.data.channels;
-      this.channelInfo[0].image = response.data.channels[5].currentscheduledepisode.socialimage,
-      this.channelInfo[0].title = response.data.channels[5].currentscheduledepisode.title,
-      this.channelInfo[0].description = response.data.channels[5].currentscheduledepisode.description;
-      this.channelInfo[0].next = response.data.channels[5].nextscheduledepisode.title;
-      this.channelInfo[1].image = response.data.channels[6].currentscheduledepisode.socialimage,
-      this.channelInfo[1].title = response.data.channels[6].currentscheduledepisode.title,
-      this.channelInfo[1].description = response.data.channels[6].currentscheduledepisode.description;
-      this.channelInfo[1].next = response.data.channels[6].nextscheduledepisode.title;
-   });
-   axios.get('http://api.sr.se/api/v2/scheduledepisodes/rightnow/channelid=132?format=json&page=3').then(response => {
-     this.channelInfo[2].image = response.data.channels[2].currentscheduledepisode.socialimage,
-     this.channelInfo[2].title = response.data.channels[2].currentscheduledepisode.title,
-     this.channelInfo[2].description = response.data.channels[2].currentscheduledepisode.description;
-     this.channelInfo[2].next = response.data.channels[2].nextscheduledepisode.title;
-   });
-   axios.get('http://api.sr.se/api/v2/scheduledepisodes/rightnow/channelid=132?format=json&page=4').then(response => {
-     this.channelInfo[3].image = response.data.channels[0].currentscheduledepisode.socialimage,
-     this.channelInfo[3].title = response.data.channels[0].currentscheduledepisode.title,
-     this.channelInfo[3].description = response.data.channels[0].currentscheduledepisode.description;
-     this.channelInfo[3].next = response.data.channels[0].nextscheduledepisode.title;
-
-   });
-   axios.get('http://api.sr.se/api/v2/channels?format=json').then(response => {
-      this.channelInfo[0].play = response.data.channels[0].liveaudio.url;
-      this.channelInfo[1].play = response.data.channels[1].liveaudio.url;
-      this.channelInfo[2].play = response.data.channels[2].liveaudio.url;
-      this.channelInfo[3].play = response.data.channels[7].liveaudio.url;
-      this.show = true;
-   });
- },
- methods: {
-   hideAndShow(current){
-     for(let i = 0; i < this.channelInfo.length; i++){
-      if(current){
-         this.channelInfo[i].hidden = false;
-       }
-       else if(current == 0){
-          this.channelInfo[i].hidden = false;
-        }
-          this.channelInfo[current].hidden = true;
-        }
-        this.fetchData();
-   },
-   fetchData(){
-     axios.get('http://api.sr.se/api/v2/scheduledepisodes/rightnow/channelid=132?format=json&page=2').then(response => {
-        this.results = response.data.channels;
-        this.channelInfo[0].image = response.data.channels[5].currentscheduledepisode.socialimage,
-        this.channelInfo[0].title = response.data.channels[5].currentscheduledepisode.title,
-        this.channelInfo[0].description = response.data.channels[5].currentscheduledepisode.description;
-        this.channelInfo[0].next = response.data.channels[5].nextscheduledepisode.title;
-        this.channelInfo[1].image = response.data.channels[6].currentscheduledepisode.socialimage,
-        this.channelInfo[1].title = response.data.channels[6].currentscheduledepisode.title,
-        this.channelInfo[1].description = response.data.channels[6].currentscheduledepisode.description;
-        this.channelInfo[1].next = response.data.channels[6].nextscheduledepisode.title;
-     });
-     axios.get('http://api.sr.se/api/v2/scheduledepisodes/rightnow/channelid=132?format=json&page=3').then(response => {
-       this.channelInfo[2].image = response.data.channels[2].currentscheduledepisode.socialimage,
-       this.channelInfo[2].title = response.data.channels[2].currentscheduledepisode.title,
-       this.channelInfo[2].description = response.data.channels[2].currentscheduledepisode.description;
-       this.channelInfo[2].next = response.data.channels[2].nextscheduledepisode.title;
-     });
-     axios.get('http://api.sr.se/api/v2/scheduledepisodes/rightnow/channelid=132?format=json&page=4').then(response => {
-       this.channelInfo[3].image = response.data.channels[0].currentscheduledepisode.socialimage,
-       this.channelInfo[3].title = response.data.channels[0].currentscheduledepisode.title,
-       this.channelInfo[3].description = response.data.channels[0].currentscheduledepisode.description;
-       this.channelInfo[3].next = response.data.channels[0].nextscheduledepisode.title;
-
-     });
-     axios.get('http://api.sr.se/api/v2/channels?format=json').then(response => {
-        this.snopp = response.data.channels;
-        this.channelInfo[0].play = response.data.channels[0].liveaudio.url;
-        this.channelInfo[1].play = response.data.channels[1].liveaudio.url;
-        this.channelInfo[2].play = response.data.channels[2].liveaudio.url;
-        this.channelInfo[3].play = response.data.channels[7].liveaudio.url;
-        this.show = true;
-     });
-   },
-   hello(){
-     alert('JOISAK RADIO MAX!!! Välj din favoritkanal och bara kör!');
-   }
- }
-});
-
-// Background color and fade in
-var windowHeight = window.outerHeight,
-    bg = document.getElementById('wrapper');
-bg.style.height = windowHeight + "px";
-bg.className = " fade";
-
-</script>
-
+<script src="magic.js"></script>
 </html>
